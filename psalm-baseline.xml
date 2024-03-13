@@ -1,2 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.16.0@2897ba636551a8cb61601cc26f6ccfbba6c36591"/>
+<files psalm-version="dev-master@ef3b018e89c4ffc157332c13e2ebf9cf22320d17">
+  <file src="src/Migrate/PHPUnitToMockeryRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Migrate/ProphecyToMockeryRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Refactor/AddMockeryPHPUnitIntegrationTraitRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Refactor/LegacyMockerySyntaxRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Set/ValueObject/MockeryRectorSetList.php">
+    <UnusedClass>
+      <code><![CDATA[MockeryRectorSetList]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/Upgrade/ReplaceHamcrestWithPHPUnitRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="tests/Unit/AbstractMockeryRectorTestCase.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[provideData]]></code>
+      <code><![CDATA[test]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+</files>
