@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace Ghostwriter\MockeryRectorTests\Unit;
 
 use Generator;
+use Ghostwriter\MockeryRector\AbstractMockeryRector;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 use ReflectionClass;
 use function dirname;
 
+#[UsesClass(AbstractMockeryRector::class)]
 abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
 {
     final public function provideConfigFilePath(): string
     {
-        return self::currentDirectory('/config/configured_rule.php');
+        return self::currentDirectory('/config.php');
     }
 
     #[DataProvider('provideData')]

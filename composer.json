@@ -1,13 +1,12 @@
 {
     "name": "ghostwriter/mockery-rector",
-    "description": "Rector upgrades rules for Mockery",
+    "description": "Rector extension for Mockery",
     "license": "BSD-3-Clause",
     "type": "rector-extension",
     "keywords": [
         "ghostwriter",
         "mockery-rector",
         "rector-extension",
-        "rector-mockery",
         "rector"
     ],
     "authors": [
@@ -34,15 +33,12 @@
     ],
     "require": {
         "php": "^8.2",
-        "ghostwriter/container": "^3.0.2",
-        "ghostwriter/event-dispatcher": "^4.0.0",
         "mockery/mockery": "^1.6 || ^2.0",
-        "rector/rector": "^1.0.2"
+        "rector/rector": "^1.0.3"
     },
     "require-dev": {
         "ghostwriter/coding-standard": "dev-main",
         "ghostwriter/psalm-plugin": "^0.2 || ^0.3 || ^1.0",
-        "symfony/var-dumper": "^7.0.4",
         "symplify/rule-doc-generator": "^12.1.2"
     },
     "conflict": {
@@ -86,7 +82,7 @@
             "@phpcbf"
         ],
         "docs": [
-            "vendor/bin/rule-doc-generator generate src --output-file docs/rector_rules_overview.md --ansi --categorize=1"
+            "vendor/bin/rule-doc-generator generate src --output-file docs/rector_rules_overview.md --ansi"
         ],
         "infection": [
             "@xdebug",

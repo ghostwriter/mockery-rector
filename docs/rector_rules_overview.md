@@ -1,52 +1,40 @@
-# 5 Rules Overview
+# 7 Rules Overview
 
-<br>
+## ExtendMockeryTestCaseRector
 
-## Categories
+Refactor to extend `Mockery\Adapter\Phpunit\MockeryTestCase` class when using Mockery
 
-- [Migrate](#migrate) (2)
-
-- [Refactor](#refactor) (2)
-
-- [Upgrade](#upgrade) (1)
-
-<br>
-
-## Migrate
-
-### PHPUnitToMockeryRector
-
-Replace PHPUnit test doubles with Mockery mocks.
-
-- class: [`Ghostwriter\MockeryRector\Migrate\PHPUnitToMockeryRector`](../src/Migrate/PHPUnitToMockeryRector.php)
+- class: [`Ghostwriter\MockeryRector\Rule\ExtendMockeryTestCaseRector`](../src/Rule/ExtendMockeryTestCaseRector.php)
 
 ```diff
  <?php
 
+ declare(strict_types=1);
+
  namespace Vendor\Package\Tests;
 
++use Mockery\Adapter\Phpunit\MockeryTestCase;
  use PHPUnit\Framework\TestCase;
 
- final class SomeTest extends TestCase
+-final class ExampleTest extends TestCase
++final class ExampleTest extends MockeryTestCase
  {
      public function test()
      {
--        $someMock = $this->createMock(SomeRepository::class);
-+        $someMock = \Mockery::mock(SomeRepository::class);
+         $mock = \Mockery::mock(Example::class);
 
-         self::assertInstanceOf(SomeRepository::class, $someMock);
+         self::assertInstanceOf(Example::class, $mock);
      }
  }
- ?>
 ```
 
 <br>
 
-### ProphecyToMockeryRector
+## HamcrestToPHPUnitRector
 
-// `@todo` fill the description
+Refactor Hamcrest matchers to PHPUnit constraints
 
-- class: [`Ghostwriter\MockeryRector\Migrate\ProphecyToMockeryRector`](../src/Migrate/ProphecyToMockeryRector.php)
+- class: [`Ghostwriter\MockeryRector\Rule\HamcrestToPHPUnitRector`](../src/Rule/HamcrestToPHPUnitRector.php)
 
 ```diff
 -// @todo fill code before
@@ -55,13 +43,133 @@ Replace PHPUnit test doubles with Mockery mocks.
 
 <br>
 
-## Refactor
+## PHPUnitToMockeryRector
 
-### AddMockeryPHPUnitIntegrationTraitRector
+Refactor PHPUnit to Mockery
 
-Add `\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration` trait to PHPUnit test classes using Mockery
+- class: [`Ghostwriter\MockeryRector\Rule\PHPUnitToMockeryRector`](../src/Rule/PHPUnitToMockeryRector.php)
 
-- class: [`Ghostwriter\MockeryRector\Refactor\AddMockeryPHPUnitIntegrationTraitRector`](../src/Refactor/AddMockeryPHPUnitIntegrationTraitRector.php)
+```diff
+ <?php
+
+ namespace Vendor\Package\Tests;
+
+ use PHPUnit\Framework\TestCase;
+
+ final class ExampleTest extends TestCase
+ {
+     public function test()
+     {
+-        $mock = $this->createStub(Example::class);
++        $mock = \Mockery::mock(Example::class);
+
+-        $mock->method('method')->willReturn('value');
++        $mock->expects('method')->andReturn('value');
+
+         self::assertSame('value', $mock->method());
+     }
+ }
+```
+
+<br>
+
+## ProphecyToMockeryRector
+
+Refactor Prophecy to Mockery
+
+- class: [`Ghostwriter\MockeryRector\Rule\ProphecyToMockeryRector`](../src/Rule/ProphecyToMockeryRector.php)
+
+```diff
+ <?php
+
+ declare(strict_types=1);
+
+ namespace Vendor\Package\Tests;
+
+ use PHPUnit\Framework\TestCase;
+
+ final class ExampleTest extends TestCase
+ {
+     public function test()
+     {
+-        $mock = $this->prophesize(Example::class);
++        $mock = \Mockery::mock(Example::class);
+
+-        self::assertInstanceOf(Example::class, $mock->reveal());
++        self::assertInstanceOf(Example::class, $mock);
+     }
+ }
+```
+
+<br>
+
+## ShouldReceiveToAllowsRector
+
+Refactor `shouldReceive()` to `allows()` static method call
+
+- class: [`Ghostwriter\MockeryRector\Rule\ShouldReceiveToAllowsRector`](../src/Rule/ShouldReceiveToAllowsRector.php)
+
+```diff
+ <?php
+
+ namespace Vendor\Package\Tests;
+
+ use PHPUnit\Framework\TestCase;
+
+ final class ExampleTest extends TestCase
+ {
+     use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+
+     public function test(): void
+     {
+         $mock = \Mockery::mock(Example::class);
+
+-        $mock->shouldReceive('method')->with('arg')->andReturn('value');
++        $mock->allows('method')->with('arg')->andReturn('value');
+
+         self::assertSame('value', $mock->method('arg'));
+     }
+ }
+```
+
+<br>
+
+## ShouldReceiveToExpectsRector
+
+Refactor `shouldReceive()` to `expects()` static method call
+
+- class: [`Ghostwriter\MockeryRector\Rule\ShouldReceiveToExpectsRector`](../src/Rule/ShouldReceiveToExpectsRector.php)
+
+```diff
+ <?php
+
+ namespace Vendor\Package\Tests;
+
+ use PHPUnit\Framework\TestCase;
+
+ final class ExampleTest extends TestCase
+ {
+     use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+
+     public function test(): void
+     {
+         $mock = \Mockery::mock(Example::class);
+
+-        $mock->shouldReceive('method')->once()->with('arg')->andReturn('value');
++        $mock->expects('method')->with('arg')->andReturn('value');
+
+         self::assertSame('value', $mock->method('arg'));
+     }
+ }
+```
+
+<br>
+
+## UseMockeryPHPUnitIntegrationTraitRector
+
+Refactor to use `\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration` trait when using Mockery
+
+- class: [`Ghostwriter\MockeryRector\Rule\UseMockeryPHPUnitIntegrationTraitRector`](../src/Rule/UseMockeryPHPUnitIntegrationTraitRector.php)
 
 ```diff
  <?php
@@ -73,42 +181,13 @@ Add `\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration` trait to PHPUnit test c
  final class ExampleTest extends TestCase
  {
 +    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-+
      public function test(): void
      {
-         $mock = \Mockery::mock(ExampleTest::class);
+         $mock = \Mockery::mock(Example::class);
 
-         self::assertInstanceOf(TestCase::class, $someMock);
+         self::assertInstanceOf(Example::class, $mock);
      }
  }
-```
-
-<br>
-
-### LegacyMockerySyntaxRector
-
-// `@todo` fill the description
-
-- class: [`Ghostwriter\MockeryRector\Refactor\LegacyMockerySyntaxRector`](../src/Refactor/LegacyMockerySyntaxRector.php)
-
-```diff
--// @todo fill code before
-+// @todo fill code after
-```
-
-<br>
-
-## Upgrade
-
-### ReplaceHamcrestWithPHPUnitRector
-
-// `@todo` fill the description
-
-- class: [`Ghostwriter\MockeryRector\Upgrade\ReplaceHamcrestWithPHPUnitRector`](../src/Upgrade/ReplaceHamcrestWithPHPUnitRector.php)
-
-```diff
--// @todo fill code before
-+// @todo fill code after
 ```
 
 <br>

@@ -1,45 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="dev-master@ef3b018e89c4ffc157332c13e2ebf9cf22320d17">
-  <file src="src/Migrate/PHPUnitToMockeryRector.php">
-    <MoreSpecificImplementedParamType>
-      <code><![CDATA[$node]]></code>
-    </MoreSpecificImplementedParamType>
-  </file>
-  <file src="src/Migrate/ProphecyToMockeryRector.php">
-    <MoreSpecificImplementedParamType>
-      <code><![CDATA[$node]]></code>
-    </MoreSpecificImplementedParamType>
-  </file>
-  <file src="src/Refactor/AddMockeryPHPUnitIntegrationTraitRector.php">
-    <MoreSpecificImplementedParamType>
-      <code><![CDATA[$node]]></code>
-    </MoreSpecificImplementedParamType>
+  <file src="src/AbstractMockeryRector.php">
     <PossiblyUnusedMethod>
-      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[extendsClass]]></code>
+      <code><![CDATA[hasAttribute]]></code>
+      <code><![CDATA[hasConstant]]></code>
+      <code><![CDATA[hasInterface]]></code>
+      <code><![CDATA[hasMethod]]></code>
+      <code><![CDATA[hasProperty]]></code>
+      <code><![CDATA[isAbstract]]></code>
+      <code><![CDATA[isFinalByKeyword]]></code>
+      <code><![CDATA[removeStmts]]></code>
+      <code><![CDATA[resolveParentClassName]]></code>
     </PossiblyUnusedMethod>
     <PropertyNotSetInConstructor>
-      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
-      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
-      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
-      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
-      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
-      <code><![CDATA[AddMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[AbstractMockeryRector]]></code>
+      <code><![CDATA[AbstractMockeryRector]]></code>
+      <code><![CDATA[AbstractMockeryRector]]></code>
+      <code><![CDATA[AbstractMockeryRector]]></code>
+      <code><![CDATA[AbstractMockeryRector]]></code>
+      <code><![CDATA[AbstractMockeryRector]]></code>
     </PropertyNotSetInConstructor>
+    <UndefinedClass>
+      <code><![CDATA[ReflectionEnum]]></code>
+    </UndefinedClass>
+    <UnusedMethod>
+      <code><![CDATA[hasClassParentClassMethod]]></code>
+      <code><![CDATA[hasMethodParameter]]></code>
+    </UnusedMethod>
   </file>
-  <file src="src/Refactor/LegacyMockerySyntaxRector.php">
-    <MoreSpecificImplementedParamType>
-      <code><![CDATA[$node]]></code>
-    </MoreSpecificImplementedParamType>
+  <file src="src/MockeryRectorLevelSetList.php">
+    <UnusedClass>
+      <code><![CDATA[MockeryRectorLevelSetList]]></code>
+    </UnusedClass>
   </file>
-  <file src="src/Set/ValueObject/MockeryRectorSetList.php">
+  <file src="src/MockeryRectorSetList.php">
     <UnusedClass>
       <code><![CDATA[MockeryRectorSetList]]></code>
     </UnusedClass>
   </file>
-  <file src="src/Upgrade/ReplaceHamcrestWithPHPUnitRector.php">
+  <file src="src/Rule/ExtendMockeryTestCaseRector.php">
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[ExtendMockeryTestCaseRector]]></code>
+      <code><![CDATA[ExtendMockeryTestCaseRector]]></code>
+      <code><![CDATA[ExtendMockeryTestCaseRector]]></code>
+      <code><![CDATA[ExtendMockeryTestCaseRector]]></code>
+      <code><![CDATA[ExtendMockeryTestCaseRector]]></code>
+      <code><![CDATA[ExtendMockeryTestCaseRector]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Rule/HamcrestToPHPUnitRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Rule/PHPUnitToMockeryRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Rule/ProphecyToMockeryRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Rule/ShouldReceiveToAllowsRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Rule/ShouldReceiveToExpectsRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Rule/UseMockeryPHPUnitIntegrationTraitRector.php">
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$node]]></code>
+    </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
+      <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="tests/Unit/AbstractMockeryRectorTestCase.php">
     <PossiblyUnusedMethod>

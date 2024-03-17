@@ -25,7 +25,6 @@
             <directory name=".github"/>
             <directory name="config"/>
             <directory name="docs"/>
-            <directory name="tests/Fixture"/>
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>

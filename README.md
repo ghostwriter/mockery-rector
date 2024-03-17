@@ -9,9 +9,9 @@
 [![Latest Version on Packagist](https://badgen.net/packagist/v/ghostwriter/mockery-rector)](https://packagist.org/packages/ghostwriter/mockery-rector)
 [![Downloads](https://badgen.net/packagist/dt/ghostwriter/mockery-rector?color=blue)](https://packagist.org/packages/ghostwriter/mockery-rector)
 
-Rector upgrades rules for Mockery
+Rector extension for Mockery
 
-### Star ⭐️ this repo if you find it useful
+## Star ⭐️ this repo if you find it useful
 
 You can also star (🌟) this repo to find it easier later.
 
@@ -26,17 +26,26 @@ composer require ghostwriter/mockery-rector --dev
 
 ## Usage
 
-To add a set to your config, use `Ghostwriter\MockeryRector\Set\ValueObject\MockeryRectorSetList` class and pick one of constants:
+To add a set to your config, and pick one of constants:
+
+- `Ghostwriter\MockeryRector\MockeryRectorSetList`
+- `Ghostwriter\MockeryRector\MockeryRectorLevelSetList`
 
 ```php
-use Ghostwriter\MockeryRector\Set\ValueObject\MockeryRectorSetList;
+use Ghostwriter\MockeryRector\MockeryRectorLevelSetList;
+use Ghostwriter\MockeryRector\MockeryRectorSetList;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()->withSets([
-    MockeryRectorSetList::PHPUNIT_TO_MOCKERY,
-    MockeryRectorSetList::PROPHECY_TO_MOCKERY,
-    MockeryRectorSetList::UPDATE_V1_6_X,
-    MockeryRectorSetList::UPDATE_V2_0_X,
+    // // version sets
+    // MockeryRectorSetList::MOCKERY_16, // v1.6.0
+    // MockeryRectorSetList::MOCKERY_20, // v2.0.0
+    // // or level sets
+    // MockeryRectorLevelSetList::UP_TO_MOCKERY_16, // v0.1.0 - v1.6.0
+    // MockeryRectorLevelSetList::UP_TO_MOCKERY_20, // v0.1.0 - v2.0.0
+    // // or migration sets
+    // MockeryRectorSetList::PHPUNIT_TO_MOCKERY, // PHPUnit to Mockery
+    // MockeryRectorSetList::PROPHECY_TO_MOCKERY, // Prophecy to Mockery
 ]);
 ```
 
