@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\ProphecyToMockeryRector\ProphecyToMockeryRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\ProphecyToMockeryRectorTest
  */
 final class ProphecyToMockeryRector extends AbstractRector
 {
