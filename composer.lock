@@ -1148,19 +1148,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ghostwriter/coding-standard.git",
-                "reference": "6f24b737739fc39ca5af74c55bdd250b1af5d897"
+                "reference": "d4197e9fee80ee235f4b9fd62f00936f56ef690b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ghostwriter/coding-standard/zipball/6f24b737739fc39ca5af74c55bdd250b1af5d897",
-                "reference": "6f24b737739fc39ca5af74c55bdd250b1af5d897",
+                "url": "https://api.github.com/repos/ghostwriter/coding-standard/zipball/d4197e9fee80ee235f4b9fd62f00936f56ef690b",
+                "reference": "d4197e9fee80ee235f4b9fd62f00936f56ef690b",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^2.6.0",
                 "php": "^8.1",
-                "phpunit/phpunit": ">=10.5 || dev-main as 11.999",
-                "vimeo/psalm": ">=5.23 || dev-main as 5.999"
+                "phpunit/phpunit": ">=10.5 || dev-main as 12.0.0-dev",
+                "vimeo/psalm": ">=5.23 || dev-main as 6.0.0-dev"
             },
             "require-dev": {
                 "composer/composer": "^2.7.2"
@@ -1223,7 +1223,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-25T13:06:27+00:00"
+            "time": "2024-03-29T18:04:41+00:00"
         },
         {
             "name": "ghostwriter/psalm-plugin",
