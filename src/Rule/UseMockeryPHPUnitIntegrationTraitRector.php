@@ -20,7 +20,7 @@ use function array_unshift;
 use function count;
 
 /**
- * @see UseMockeryPHPUnitIntegrationTraitRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\UseMockeryPHPUnitIntegrationTraitRectorTest
  */
 final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRector
 {
