@@ -29,16 +29,6 @@
       <code><![CDATA[hasMethodParameter]]></code>
     </UnusedMethod>
   </file>
-  <file src="src/MockeryRectorLevelSetList.php">
-    <UnusedClass>
-      <code><![CDATA[MockeryRectorLevelSetList]]></code>
-    </UnusedClass>
-  </file>
-  <file src="src/MockeryRectorSetList.php">
-    <UnusedClass>
-      <code><![CDATA[MockeryRectorSetList]]></code>
-    </UnusedClass>
-  </file>
   <file src="src/Rule/ExtendMockeryTestCaseRector.php">
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
