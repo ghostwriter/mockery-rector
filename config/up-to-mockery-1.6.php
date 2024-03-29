@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Ghostwriter\MockeryRector\MockeryRectorSetList;
+use Ghostwriter\MockeryRector\MockerySetList;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
-    ->withSets([MockeryRectorSetList::MOCKERY_1_6]);
+    ->withSets([MockerySetList::MOCKERY_1_6]);
