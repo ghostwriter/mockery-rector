@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\PHPUnitToMockeryRector\PHPUnitToMockeryRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\PHPUnitToMockeryRectorTest
  */
 final class PHPUnitToMockeryRector extends AbstractRector
 {
@@ -30,44 +30,44 @@ final class PHPUnitToMockeryRector extends AbstractRector
             [
                 new CodeSample(
                     <<<'CODE_SAMPLE'
-<?php
+                    <?php
 
-namespace Vendor\Package\Tests;
+                    namespace Vendor\Package\Tests;
 
-use PHPUnit\Framework\TestCase;
+                    use PHPUnit\Framework\TestCase;
 
-final class ExampleTest extends TestCase
-{
-    public function test()
-    {
-        $mock = $this->createStub(Example::class);
+                    final class ExampleTest extends TestCase
+                    {
+                        public function test()
+                        {
+                            $mock = $this->createStub(Example::class);
 
-        $mock->method('method')->willReturn('value');
+                            $mock->method('method')->willReturn('value');
 
-        self::assertSame('value', $mock->method());
-    }
-}
-CODE_SAMPLE
+                            self::assertSame('value', $mock->method());
+                        }
+                    }
+                    CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-<?php
+                    <?php
 
-namespace Vendor\Package\Tests;
+                    namespace Vendor\Package\Tests;
 
-use PHPUnit\Framework\TestCase;
+                    use PHPUnit\Framework\TestCase;
 
-final class ExampleTest extends TestCase
-{
-    public function test()
-    {
-        $mock = \Mockery::mock(Example::class);
+                    final class ExampleTest extends TestCase
+                    {
+                        public function test()
+                        {
+                            $mock = \Mockery::mock(Example::class);
 
-        $mock->expects('method')->andReturn('value');
+                            $mock->expects('method')->andReturn('value');
 
-        self::assertSame('value', $mock->method());
-    }
-}
-CODE_SAMPLE
+                            self::assertSame('value', $mock->method());
+                        }
+                    }
+                    CODE_SAMPLE
                 ),
             ]
         );
