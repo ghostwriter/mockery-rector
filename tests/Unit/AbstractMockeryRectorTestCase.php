@@ -21,6 +21,9 @@ use function substr;
 #[UsesClass(AbstractMockeryRector::class)]
 abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
 {
+    /**
+     * @var array<class-string<static>,string>
+     */
     protected static $filePaths = [];
 
     final public function provideConfigFilePath(): string
@@ -39,7 +42,13 @@ abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
      */
     public static function currentRuleName(): string
     {
-        return substr(static::class, 1 + (strrpos(static::class, '\\') ?: -1), -4);
+        $lastSeparator = strrpos(static::class, '\\');
+
+        if ($lastSeparator === false) {
+            return substr(static::class, 0, -4);
+        }
+
+        return substr(static::class, ++$lastSeparator, -4);
     }
 
     /**
