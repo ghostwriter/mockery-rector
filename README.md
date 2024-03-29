@@ -32,8 +32,8 @@ To add a set to your config, and pick one of constants:
 - `Ghostwriter\MockeryRector\MockeryRectorLevelSetList`
 
 ```php
-use Ghostwriter\MockeryRector\MockeryRectorLevelSetList;
-use Ghostwriter\MockeryRector\MockeryRectorSetList;
+use Ghostwriter\MockeryRector\MockeryLevelSetList;
+use Ghostwriter\MockeryRector\MockerySetList;
 use Ghostwriter\MockeryRector\Rule\ExtendMockeryTestCaseRector;
 use Ghostwriter\MockeryRector\Rule\HamcrestToPHPUnitRector;
 use Ghostwriter\MockeryRector\Rule\PHPUnitToMockeryRector;
@@ -56,14 +56,14 @@ return RectorConfig::configure()
     ])
     ->withSets([
          // version sets
-         MockeryRectorSetList::MOCKERY_1_6, // v1.6.0
-         MockeryRectorSetList::MOCKERY_2_0, // v2.0.0
+         MockerySetList::MOCKERY_1_6, // v1.6.0
+         MockerySetList::MOCKERY_2_0, // v2.0.0
          // or level sets
-         MockeryRectorLevelSetList::UP_TO_MOCKERY_1_6, // v0.1.0 - v1.6.0
-         MockeryRectorLevelSetList::UP_TO_MOCKERY_2_0, // v0.1.0 - v2.0.0
+         MockeryLevelSetList::UP_TO_MOCKERY_1_6, // v0.1.0 - v1.6.0
+         MockeryLevelSetList::UP_TO_MOCKERY_2_0, // v0.1.0 - v2.0.0
          // or migration sets
-         MockeryRectorSetList::PHPUNIT_TO_MOCKERY, // PHPUnit to Mockery
-         MockeryRectorSetList::PROPHECY_TO_MOCKERY, // Prophecy to Mockery
+         MockerySetList::PHPUNIT_TO_MOCKERY, // PHPUnit to Mockery
+         MockerySetList::PROPHECY_TO_MOCKERY, // Prophecy to Mockery
     ]);
 ```
 
