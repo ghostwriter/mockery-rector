@@ -12,13 +12,13 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\TempOhghgRector\TempOhghgRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\RuleRectorTest
  */
-final class TempOhghgRector extends AbstractMockeryRector
+final class RuleRector extends AbstractMockeryRector
 {
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('// @todo temp-ohghg-rector', [
+        return new RuleDefinition('// @todo rule-rector', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
                 <?php
@@ -64,7 +64,7 @@ final class TempOhghgRector extends AbstractMockeryRector
                         // @todo fill code after
                     }
                 }
-CODE_SAMPLE
+                CODE_SAMPLE
             ),
         ]);
     }
