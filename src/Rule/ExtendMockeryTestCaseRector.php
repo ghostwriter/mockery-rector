@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see ExtendMockeryTestCaseRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\ExtendMockeryTestCaseRectorTest
  */
 final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
 {
@@ -30,47 +30,46 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
             [
                 new CodeSample(
                     <<<'CODE_SAMPLE'
-                <?php
+                    <?php
 
-                declare(strict_types=1);
+                    declare(strict_types=1);
 
-                namespace Vendor\Package\Tests;
+                    namespace Vendor\Package\Tests;
 
-                use PHPUnit\Framework\TestCase;
+                    use PHPUnit\Framework\TestCase;
 
-                final class ExampleTest extends TestCase
-                {
-                    public function test()
+                    final class ExampleTest extends TestCase
                     {
-                        $mock = \Mockery::mock(Example::class);
+                        public function test()
+                        {
+                            $mock = \Mockery::mock(Example::class);
 
-                        self::assertInstanceOf(Example::class, $mock);
+                            self::assertInstanceOf(Example::class, $mock);
+                        }
                     }
-                }
-                CODE_SAMPLE
+                    CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-                <?php
+                    <?php
 
-                declare(strict_types=1);
+                    declare(strict_types=1);
 
-                namespace Vendor\Package\Tests;
+                    namespace Vendor\Package\Tests;
 
-                use Mockery\Adapter\Phpunit\MockeryTestCase;
-                use PHPUnit\Framework\TestCase;
+                    use Mockery\Adapter\Phpunit\MockeryTestCase;
+                    use PHPUnit\Framework\TestCase;
 
-                final class ExampleTest extends MockeryTestCase
-                {
-                    public function test()
+                    final class ExampleTest extends MockeryTestCase
                     {
-                        $mock = \Mockery::mock(Example::class);
+                        public function test()
+                        {
+                            $mock = \Mockery::mock(Example::class);
 
-                        self::assertInstanceOf(Example::class, $mock);
+                            self::assertInstanceOf(Example::class, $mock);
+                        }
                     }
-                }
-                CODE_SAMPLE
+                    CODE_SAMPLE
                 ),
-
             ]
         );
     }
