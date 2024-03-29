@@ -6,7 +6,7 @@ namespace Ghostwriter\MockeryRector;
 
 use Rector\Set\Contract\SetListInterface;
 
-final readonly class MockeryRectorSetList implements SetListInterface
+final readonly class MockerySetList implements SetListInterface
 {
     final public const MOCKERY_1_6 = __DIR__ . '/../config/mockery-1.6.php';
 
