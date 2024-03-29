@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\LegacyMockerySyntaxRector\LegacyMockerySyntaxRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\ShouldReceiveToAllowsRectorTest
  */
 final class ShouldReceiveToAllowsRector extends AbstractRector
 {
@@ -50,26 +50,26 @@ final class ShouldReceiveToAllowsRector extends AbstractRector
                 CODE_SAMPLE
                 ,
                 <<<'CODE_SAMPLE'
-            <?php
+                <?php
 
-            namespace Vendor\Package\Tests;
+                namespace Vendor\Package\Tests;
 
-            use PHPUnit\Framework\TestCase;
+                use PHPUnit\Framework\TestCase;
 
-            final class ExampleTest extends TestCase
-            {
-                use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-
-                public function test(): void
+                final class ExampleTest extends TestCase
                 {
-                    $mock = \Mockery::mock(Example::class);
+                    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-                    $mock->allows('method')->with('arg')->andReturn('value');
+                    public function test(): void
+                    {
+                        $mock = \Mockery::mock(Example::class);
 
-                    self::assertSame('value', $mock->method('arg'));
+                        $mock->allows('method')->with('arg')->andReturn('value');
+
+                        self::assertSame('value', $mock->method('arg'));
+                    }
                 }
-            }
-            CODE_SAMPLE
+                CODE_SAMPLE
             ),
         ]);
     }
