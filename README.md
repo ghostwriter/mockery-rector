@@ -34,19 +34,37 @@ To add a set to your config, and pick one of constants:
 ```php
 use Ghostwriter\MockeryRector\MockeryRectorLevelSetList;
 use Ghostwriter\MockeryRector\MockeryRectorSetList;
+use Ghostwriter\MockeryRector\Rule\ExtendMockeryTestCaseRector;
+use Ghostwriter\MockeryRector\Rule\HamcrestToPHPUnitRector;
+use Ghostwriter\MockeryRector\Rule\PHPUnitToMockeryRector;
+use Ghostwriter\MockeryRector\Rule\ProphecyToMockeryRector;
+use Ghostwriter\MockeryRector\Rule\ShouldReceiveToAllowsRector;
+use Ghostwriter\MockeryRector\Rule\ShouldReceiveToExpectsRector;
+use Ghostwriter\MockeryRector\Rule\UseMockeryPHPUnitIntegrationTraitRector;
+
 use Rector\Config\RectorConfig;
 
-return RectorConfig::configure()->withSets([
-    // // version sets
-    // MockeryRectorSetList::MOCKERY_16, // v1.6.0
-    // MockeryRectorSetList::MOCKERY_20, // v2.0.0
-    // // or level sets
-    // MockeryRectorLevelSetList::UP_TO_MOCKERY_16, // v0.1.0 - v1.6.0
-    // MockeryRectorLevelSetList::UP_TO_MOCKERY_20, // v0.1.0 - v2.0.0
-    // // or migration sets
-    // MockeryRectorSetList::PHPUNIT_TO_MOCKERY, // PHPUnit to Mockery
-    // MockeryRectorSetList::PROPHECY_TO_MOCKERY, // Prophecy to Mockery
-]);
+return RectorConfig::configure()
+    ->withRules([
+        // ExtendMockeryTestCaseRector::class,
+        // HamcrestToPHPUnitRector::class,
+        // PHPUnitToMockeryRector::class,
+        // ProphecyToMockeryRector::class,
+        // ShouldReceiveToAllowsRector::class,
+        // ShouldReceiveToExpectsRector::class,
+        // UseMockeryPHPUnitIntegrationTraitRector::class,
+    ])
+    ->withSets([
+         // version sets
+         MockeryRectorSetList::MOCKERY_1_6, // v1.6.0
+         MockeryRectorSetList::MOCKERY_2_0, // v2.0.0
+         // or level sets
+         MockeryRectorLevelSetList::UP_TO_MOCKERY_1_6, // v0.1.0 - v1.6.0
+         MockeryRectorLevelSetList::UP_TO_MOCKERY_2_0, // v0.1.0 - v2.0.0
+         // or migration sets
+         MockeryRectorSetList::PHPUNIT_TO_MOCKERY, // PHPUnit to Mockery
+         MockeryRectorSetList::PROPHECY_TO_MOCKERY, // Prophecy to Mockery
+    ]);
 ```
 
 ### Mockery Rector Rules
