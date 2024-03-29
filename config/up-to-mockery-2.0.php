@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Ghostwriter\MockeryRector\MockeryRectorLevelSetList;
-use Ghostwriter\MockeryRector\MockeryRectorSetList;
+use Ghostwriter\MockeryRector\MockeryLevelSetList;
+use Ghostwriter\MockeryRector\MockerySetList;
 use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
-    ->withSets([MockeryRectorSetList::MOCKERY_2_0, MockeryRectorLevelSetList::UP_TO_MOCKERY_1_6]);
+    ->withSets([MockerySetList::MOCKERY_2_0, MockeryLevelSetList::UP_TO_MOCKERY_1_6]);
