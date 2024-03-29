@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see ReplaceHamcrestWithPHPUnitRectorTest
+ * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\HamcrestToPHPUnitRectorTest
  */
 final class HamcrestToPHPUnitRector extends AbstractRector
 {
@@ -28,12 +28,12 @@ final class HamcrestToPHPUnitRector extends AbstractRector
         return new RuleDefinition('Refactor Hamcrest matchers to PHPUnit constraints', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
-// @todo fill code before
-CODE_SAMPLE
+                // @todo fill code before
+                CODE_SAMPLE
                 ,
                 <<<'CODE_SAMPLE'
-// @todo fill code after
-CODE_SAMPLE
+                // @todo fill code after
+                CODE_SAMPLE
             ),
         ]);
     }
