@@ -39,7 +39,7 @@
     "require-dev": {
         "ghostwriter/coding-standard": "dev-main",
         "ghostwriter/psalm-plugin": "^0.2 || ^0.3 || ^1.0",
-        "symplify/rule-doc-generator": "^12.1.2"
+        "symplify/rule-doc-generator": "^12.1.10"
     },
     "conflict": {
         "rector/rector": "<1.0"
