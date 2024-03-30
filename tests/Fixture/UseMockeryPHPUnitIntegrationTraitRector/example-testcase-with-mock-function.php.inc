@@ -3,12 +3,13 @@
 namespace Vendor\Package\Tests;
 
 use PHPUnit\Framework\TestCase;
+use function mock;
 
 final class ExampleTest extends TestCase
 {
     public function test(): void
     {
-        $mock = \mock(TestCase::class);
+        $mock = mock(TestCase::class);
 
         self::assertInstanceOf(TestCase::class, $someMock);
     }
@@ -18,14 +19,16 @@ final class ExampleTest extends TestCase
 
 namespace Vendor\Package\Tests;
 
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
+use function mock;
 
 final class ExampleTest extends TestCase
 {
-    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+    use MockeryPHPUnitIntegration;
     public function test(): void
     {
-        $mock = \mock(TestCase::class);
+        $mock = mock(TestCase::class);
 
         self::assertInstanceOf(TestCase::class, $someMock);
     }
