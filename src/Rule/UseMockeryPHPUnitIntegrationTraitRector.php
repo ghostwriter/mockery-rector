@@ -9,7 +9,6 @@ use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\StaticCall;
-use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\TraitUse;
@@ -24,14 +23,6 @@ use function count;
  */
 final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRector
 {
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
-    {
-        return [Class_::class];
-    }
-
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
@@ -43,13 +34,14 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
 
                     namespace Vendor\Package\Tests;
 
+                    use Mockery;
                     use PHPUnit\Framework\TestCase;
 
                     final class ExampleTest extends TestCase
                     {
                         public function test(): void
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            $mock = Mockery::mock(Example::class);
 
                             self::assertInstanceOf(Example::class, $mock);
                         }
@@ -61,14 +53,16 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
 
                     namespace Vendor\Package\Tests;
 
+                    use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+                    use Mockery;
                     use PHPUnit\Framework\TestCase;
 
                     final class ExampleTest extends TestCase
                     {
-                        use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+                        use MockeryPHPUnitIntegration;
                         public function test(): void
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            $mock = Mockery::mock(Example::class);
 
                             self::assertInstanceOf(Example::class, $mock);
                         }
@@ -85,23 +79,34 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
      */
     public function refactor(Node $node): ?Node
     {
-        if (! $node instanceof Class_ && ! $this->isPHPUnitTestCase($node)) {
-            return null;
-        }
+        $this->traverseNodesWithCallable(
+            $node->stmts,
+            function (Node $node): ?Node {
+                if (! $node instanceof Class_) {
+                    return null;
+                }
 
-        if ($this->hasMockeryPHPUnitIntegrationTrait($node)) {
-            return null;
-        }
+                if (! $this->isPHPUnitTestCase($node)) {
+                    return null;
+                }
 
-        if (! $this->hasMockeryMock($node) && ! $this->hasMockFunction($node)) {
-            return null;
-        }
+                if ($this->hasMockeryPHPUnitIntegrationTrait($node)) {
+                    return null;
+                }
 
-        if ($this->hasTestCaseTearDownMockeryCloseWithOptionalParentTearDown($node)) {
-            $node = $this->removeTeardownClassMethod($node);
-        }
+                if (! $this->hasMockeryMock($node) && ! $this->hasMockFunction($node)) {
+                    return null;
+                }
 
-        return $this->addMockeryPHPUnitIntegrationTrait($node);
+                if ($this->hasTestCaseTearDownMockeryCloseWithOptionalParentTearDown($node)) {
+                    $node = $this->removeTeardownClassMethod($node);
+                }
+
+                return $this->addMockeryPHPUnitIntegrationTrait($node);
+            }
+        );
+
+        return $node;
     }
 
     private function addMockeryPHPUnitIntegrationTrait(Class_ $node): Class_
@@ -110,7 +115,7 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
             return $node;
         }
 
-        array_unshift($node->stmts, new TraitUse([new FullyQualified(MockeryPHPUnitIntegration::class)]));
+        array_unshift($node->stmts, new TraitUse([$this->importName(MockeryPHPUnitIntegration::class)]));
 
         return $node;
     }
