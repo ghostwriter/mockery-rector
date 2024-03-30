@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Ghostwriter\MockeryRector\Rule;
 
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use PHPUnit\Framework\TestCase;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -15,14 +17,6 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
 {
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
-    {
-        return [Class_::class];
-    }
-
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
@@ -57,7 +51,6 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
                     namespace Vendor\Package\Tests;
 
                     use Mockery\Adapter\Phpunit\MockeryTestCase;
-                    use PHPUnit\Framework\TestCase;
 
                     final class ExampleTest extends MockeryTestCase
                     {
@@ -79,7 +72,24 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
      */
     public function refactor(Node $node): ?Node
     {
-        // @todo change the node
+        $this->traverseNodesWithCallable(
+            $node->stmts,
+            function (Node $node): null|Node {
+                if (! $node instanceof Class_) {
+                    return null;
+                }
+
+                if (! $this->isPHPUnitTestCase($node)) {
+                    return null;
+                }
+
+                $this->removeUseStatements(TestCase::class);
+
+                $node->extends = $this->importName(MockeryTestCase::class);
+
+                return $node;
+            }
+        );
 
         return $node;
     }
