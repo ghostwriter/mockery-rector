@@ -11,12 +11,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 use ReflectionClass;
+
 use function array_key_exists;
 use function dirname;
+use function mb_strrpos;
+use function mb_substr;
 use function realpath;
 use function sprintf;
-use function strrpos;
-use function substr;
 
 #[UsesClass(AbstractMockeryRector::class)]
 abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
@@ -37,23 +38,17 @@ abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
         $this->doTestFile($filePath);
     }
 
-    /**
-     * @return string
-     */
     public static function currentRuleName(): string
     {
-        $lastSeparator = strrpos(static::class, '\\');
+        $lastSeparator = mb_strrpos(static::class, '\\');
 
         if ($lastSeparator === false) {
-            return substr(static::class, 0, -4);
+            return mb_substr(static::class, 0, -4);
         }
 
-        return substr(static::class, ++$lastSeparator, -4);
+        return mb_substr(static::class, ++$lastSeparator, -4);
     }
 
-    /**
-     * @return Generator
-     */
     final public static function provideData(): Generator
     {
         yield from self::yieldFilesFromDirectory(self::fixtureDirectory());
