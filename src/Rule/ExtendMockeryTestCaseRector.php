@@ -8,7 +8,10 @@ use Ghostwriter\MockeryRector\AbstractMockeryRector;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\Namespace_;
 use PHPUnit\Framework\TestCase;
+use Rector\Exception\ShouldNotHappenException;
+use Rector\PhpParser\Node\CustomNode\FileWithoutNamespace;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -30,13 +33,14 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
 
                     namespace Vendor\Package\Tests;
 
+                    use Mockery;
                     use PHPUnit\Framework\TestCase;
 
                     final class ExampleTest extends TestCase
                     {
                         public function test()
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            $mock = Mockery::mock(Example::class);
 
                             self::assertInstanceOf(Example::class, $mock);
                         }
@@ -51,12 +55,13 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
                     namespace Vendor\Package\Tests;
 
                     use Mockery\Adapter\Phpunit\MockeryTestCase;
+                    use Mockery;
 
                     final class ExampleTest extends MockeryTestCase
                     {
                         public function test()
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            $mock = Mockery::mock(Example::class);
 
                             self::assertInstanceOf(Example::class, $mock);
                         }
@@ -68,28 +73,38 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
     }
 
     /**
-     * @param Class_ $node
+     * @param FileWithoutNamespace|Namespace_ $node
+     *
+     * @throws ShouldNotHappenException
      */
     public function refactor(Node $node): ?Node
     {
-        $this->traverseNodesWithCallable(
+        $refactored = false;
+
+        $this->traverseNodes(
             $node->stmts,
-            function (Node $node): null|Node {
+            function (Node $node) use (&$refactored): ?Class_ {
                 if (! $node instanceof Class_) {
                     return null;
                 }
 
-                if (! $this->isPHPUnitTestCase($node)) {
+                if (! $this->isSubclassOfPHPUnitTestCase($node)) {
                     return null;
                 }
 
-                $this->removeUseStatements(TestCase::class);
+                $refactored = true;
 
-                $node->extends = $this->importName(MockeryTestCase::class);
+                $this->extend($node, MockeryTestCase::class);
 
                 return $node;
             }
         );
+
+        if (! $refactored) {
+            return null;
+        }
+
+        $this->removeUseStatements(TestCase::class);
 
         return $node;
     }
