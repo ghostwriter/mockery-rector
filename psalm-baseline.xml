@@ -1,18 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="dev-master@ef3b018e89c4ffc157332c13e2ebf9cf22320d17">
+<files psalm-version="5.23.1@8471a896ccea3526b26d082f4461eeea467f10a4">
   <file src="src/AbstractMockeryRector.php">
+    <InvalidArgument>
+      <code><![CDATA[[$this->importName($class)]]]></code>
+    </InvalidArgument>
+    <LessSpecificReturnType>
+      <code><![CDATA[?Node]]></code>
+      <code><![CDATA[?int]]></code>
+      <code><![CDATA[?int]]></code>
+    </LessSpecificReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getNodeTypes(): array]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[currentFile]]></code>
+      <code><![CDATA[currentFile]]></code>
+      <code><![CDATA[currentFile]]></code>
+      <code><![CDATA[importName]]></code>
+    </MissingThrowsDocblock>
+    <MixedInferredReturnType>
+      <code><![CDATA[?string]]></code>
+    </MixedInferredReturnType>
+    <PossiblyUndefinedIntArrayOffset>
+      <code><![CDATA[$property->props[0]]]></code>
+    </PossiblyUndefinedIntArrayOffset>
     <PossiblyUnusedMethod>
+      <code><![CDATA[addTraitUse]]></code>
       <code><![CDATA[extendsClass]]></code>
       <code><![CDATA[hasAttribute]]></code>
+      <code><![CDATA[hasClassParentClassMethod]]></code>
       <code><![CDATA[hasConstant]]></code>
       <code><![CDATA[hasInterface]]></code>
       <code><![CDATA[hasMethod]]></code>
+      <code><![CDATA[hasMethodParameter]]></code>
       <code><![CDATA[hasProperty]]></code>
+      <code><![CDATA[hasTestCaseTearDownMockeryCloseWithOptionalParentTearDown]]></code>
       <code><![CDATA[isAbstract]]></code>
       <code><![CDATA[isFinalByKeyword]]></code>
+      <code><![CDATA[isSubclassOfMockeryPHPUnitTestCase]]></code>
+      <code><![CDATA[removeClassMethodTeardown]]></code>
       <code><![CDATA[removeStmts]]></code>
       <code><![CDATA[resolveParentClassName]]></code>
+      <code><![CDATA[usesClass]]></code>
+      <code><![CDATA[usesConstant]]></code>
+      <code><![CDATA[usesFunction]]></code>
     </PossiblyUnusedMethod>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$aliasNameResolver]]></code>
+      <code><![CDATA[$docBlockNameImporter]]></code>
+      <code><![CDATA[$docBlockUpdater]]></code>
+      <code><![CDATA[$phpDocInfoFactory]]></code>
+      <code><![CDATA[$useImportsAdder]]></code>
+    </PossiblyUnusedProperty>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[Class_]]></code>
+    </PossiblyUnusedReturnValue>
     <PropertyNotSetInConstructor>
       <code><![CDATA[AbstractMockeryRector]]></code>
       <code><![CDATA[AbstractMockeryRector]]></code>
@@ -24,12 +66,28 @@
     <UndefinedClass>
       <code><![CDATA[ReflectionEnum]]></code>
     </UndefinedClass>
-    <UnusedMethod>
-      <code><![CDATA[hasClassParentClassMethod]]></code>
-      <code><![CDATA[hasMethodParameter]]></code>
-    </UnusedMethod>
+    <UndefinedVariable>
+      <code><![CDATA[$refactored]]></code>
+    </UndefinedVariable>
+  </file>
+  <file src="src/MockeryLevelSetList.php">
+    <UnusedClass>
+      <code><![CDATA[MockeryLevelSetList]]></code>
+    </UnusedClass>
+  </file>
+  <file src="src/MockerySetList.php">
+    <UnusedClass>
+      <code><![CDATA[MockerySetList]]></code>
+    </UnusedClass>
   </file>
   <file src="src/Rule/ExtendMockeryTestCaseRector.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$node->stmts]]></code>
+    </ArgumentTypeCoercion>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -43,31 +101,95 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/HamcrestToPHPUnitRector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[HamcrestToPHPUnitRector]]></code>
+      <code><![CDATA[HamcrestToPHPUnitRector]]></code>
+      <code><![CDATA[HamcrestToPHPUnitRector]]></code>
+      <code><![CDATA[HamcrestToPHPUnitRector]]></code>
+      <code><![CDATA[HamcrestToPHPUnitRector]]></code>
+      <code><![CDATA[HamcrestToPHPUnitRector]]></code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/PHPUnitToMockeryRector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[PHPUnitToMockeryRector]]></code>
+      <code><![CDATA[PHPUnitToMockeryRector]]></code>
+      <code><![CDATA[PHPUnitToMockeryRector]]></code>
+      <code><![CDATA[PHPUnitToMockeryRector]]></code>
+      <code><![CDATA[PHPUnitToMockeryRector]]></code>
+      <code><![CDATA[PHPUnitToMockeryRector]]></code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/ProphecyToMockeryRector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[ProphecyToMockeryRector]]></code>
+      <code><![CDATA[ProphecyToMockeryRector]]></code>
+      <code><![CDATA[ProphecyToMockeryRector]]></code>
+      <code><![CDATA[ProphecyToMockeryRector]]></code>
+      <code><![CDATA[ProphecyToMockeryRector]]></code>
+      <code><![CDATA[ProphecyToMockeryRector]]></code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/ShouldReceiveToAllowsRector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[ShouldReceiveToAllowsRector]]></code>
+      <code><![CDATA[ShouldReceiveToAllowsRector]]></code>
+      <code><![CDATA[ShouldReceiveToAllowsRector]]></code>
+      <code><![CDATA[ShouldReceiveToAllowsRector]]></code>
+      <code><![CDATA[ShouldReceiveToAllowsRector]]></code>
+      <code><![CDATA[ShouldReceiveToAllowsRector]]></code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/ShouldReceiveToExpectsRector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[ShouldReceiveToExpectsRector]]></code>
+      <code><![CDATA[ShouldReceiveToExpectsRector]]></code>
+      <code><![CDATA[ShouldReceiveToExpectsRector]]></code>
+      <code><![CDATA[ShouldReceiveToExpectsRector]]></code>
+      <code><![CDATA[ShouldReceiveToExpectsRector]]></code>
+      <code><![CDATA[ShouldReceiveToExpectsRector]]></code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/UseMockeryPHPUnitIntegrationTraitRector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
+      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
+    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -81,6 +203,9 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="tests/Unit/AbstractMockeryRectorTestCase.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[final public function provideConfigFilePath(): string]]></code>
+    </MissingOverrideAttribute>
     <PossiblyUnusedMethod>
       <code><![CDATA[provideData]]></code>
       <code><![CDATA[test]]></code>
