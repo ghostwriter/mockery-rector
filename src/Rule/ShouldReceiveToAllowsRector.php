@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\ShouldReceiveToAllowsRectorTest
+ * @see \Tests\Unit\Rule\ShouldReceiveToAllowsRectorTest
  */
 final class ShouldReceiveToAllowsRector extends AbstractMockeryRector
 {
