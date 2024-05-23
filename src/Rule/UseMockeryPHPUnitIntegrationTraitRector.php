@@ -13,7 +13,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\UseMockeryPHPUnitIntegrationTraitRectorTest
+ * @see \Tests\Unit\Rule\UseMockeryPHPUnitIntegrationTraitRectorTest
  */
 final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRector
 {
