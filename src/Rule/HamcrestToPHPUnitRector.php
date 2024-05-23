@@ -11,7 +11,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\HamcrestToPHPUnitRectorTest
+ * @see \Tests\Unit\Rule\HamcrestToPHPUnitRectorTest
  */
 final class HamcrestToPHPUnitRector extends AbstractMockeryRector
 {
