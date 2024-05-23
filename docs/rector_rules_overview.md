@@ -14,14 +14,15 @@ Refactor to extend `Mockery\Adapter\Phpunit\MockeryTestCase` class when using Mo
  namespace Vendor\Package\Tests;
 
 +use Mockery\Adapter\Phpunit\MockeryTestCase;
- use PHPUnit\Framework\TestCase;
+ use Mockery;
+-use PHPUnit\Framework\TestCase;
 
 -final class ExampleTest extends TestCase
 +final class ExampleTest extends MockeryTestCase
  {
      public function test()
      {
-         $mock = \Mockery::mock(Example::class);
+         $mock = Mockery::mock(Example::class);
 
          self::assertInstanceOf(Example::class, $mock);
      }
@@ -176,14 +177,16 @@ Refactor to use `\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration` trait when 
 
  namespace Vendor\Package\Tests;
 
++use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+ use Mockery;
  use PHPUnit\Framework\TestCase;
 
  final class ExampleTest extends TestCase
  {
-+    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
++    use MockeryPHPUnitIntegration;
      public function test(): void
      {
-         $mock = \Mockery::mock(Example::class);
+         $mock = Mockery::mock(Example::class);
 
          self::assertInstanceOf(Example::class, $mock);
      }
