@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ghostwriter\MockeryRectorTests\Unit;
+namespace Tests\Unit;
 
 use Generator;
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
