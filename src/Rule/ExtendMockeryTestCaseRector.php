@@ -16,7 +16,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Ghostwriter\MockeryRectorTests\Unit\Rule\ExtendMockeryTestCaseRectorTest
+ * @see \Tests\Unit\Rule\ExtendMockeryTestCaseRectorTest
  */
 final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
 {
