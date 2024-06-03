@@ -69,8 +69,7 @@ abstract class AbstractMockeryRector extends AbstractRector
         public readonly UseImportsAdder $useImportsAdder,
         public readonly UseImportsResolver $useImportsResolver,
         public readonly UseNodesToAddCollector $useNodesToAddCollector,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws ShouldNotHappenException
