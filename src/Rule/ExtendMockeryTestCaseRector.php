@@ -27,46 +27,46 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
             [
                 new CodeSample(
                     <<<'CODE_SAMPLE'
-                    <?php
+                        <?php
 
-                    declare(strict_types=1);
+                        declare(strict_types=1);
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use Mockery;
-                    use PHPUnit\Framework\TestCase;
+                        use Mockery;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        public function test()
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = Mockery::mock(Example::class);
+                            public function test()
+                            {
+                                $mock = Mockery::mock(Example::class);
 
-                            self::assertInstanceOf(Example::class, $mock);
+                                self::assertInstanceOf(Example::class, $mock);
+                            }
                         }
-                    }
-                    CODE_SAMPLE
+                        CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-                    <?php
+                        <?php
 
-                    declare(strict_types=1);
+                        declare(strict_types=1);
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use Mockery\Adapter\Phpunit\MockeryTestCase;
-                    use Mockery;
+                        use Mockery\Adapter\Phpunit\MockeryTestCase;
+                        use Mockery;
 
-                    final class ExampleTest extends MockeryTestCase
-                    {
-                        public function test()
+                        final class ExampleTest extends MockeryTestCase
                         {
-                            $mock = Mockery::mock(Example::class);
+                            public function test()
+                            {
+                                $mock = Mockery::mock(Example::class);
 
-                            self::assertInstanceOf(Example::class, $mock);
+                                self::assertInstanceOf(Example::class, $mock);
+                            }
                         }
-                    }
-                    CODE_SAMPLE
+                        CODE_SAMPLE
                 ),
             ]
         );
