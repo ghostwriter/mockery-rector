@@ -20,44 +20,44 @@ final class ProphecyToMockeryRector extends AbstractMockeryRector
         return new RuleDefinition('Refactor Prophecy to Mockery', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
-                <?php
+                    <?php
 
-                declare(strict_types=1);
+                    declare(strict_types=1);
 
-                namespace Vendor\Package\Tests;
+                    namespace Vendor\Package\Tests;
 
-                use PHPUnit\Framework\TestCase;
+                    use PHPUnit\Framework\TestCase;
 
-                final class ExampleTest extends TestCase
-                {
-                    public function test()
+                    final class ExampleTest extends TestCase
                     {
-                        $mock = $this->prophesize(Example::class);
+                        public function test()
+                        {
+                            $mock = $this->prophesize(Example::class);
 
-                        self::assertInstanceOf(Example::class, $mock->reveal());
+                            self::assertInstanceOf(Example::class, $mock->reveal());
+                        }
                     }
-                }
-                CODE_SAMPLE
+                    CODE_SAMPLE
                 ,
                 <<<'CODE_SAMPLE'
-                <?php
+                    <?php
 
-                declare(strict_types=1);
+                    declare(strict_types=1);
 
-                namespace Vendor\Package\Tests;
+                    namespace Vendor\Package\Tests;
 
-                use PHPUnit\Framework\TestCase;
+                    use PHPUnit\Framework\TestCase;
 
-                final class ExampleTest extends TestCase
-                {
-                    public function test()
+                    final class ExampleTest extends TestCase
                     {
-                        $mock = \Mockery::mock(Example::class);
+                        public function test()
+                        {
+                            $mock = \Mockery::mock(Example::class);
 
-                        self::assertInstanceOf(Example::class, $mock);
+                            self::assertInstanceOf(Example::class, $mock);
+                        }
                     }
-                }
-                CODE_SAMPLE
+                    CODE_SAMPLE
             ),
         ]);
     }
