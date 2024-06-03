@@ -22,44 +22,44 @@ final class PHPUnitToMockeryRector extends AbstractMockeryRector
             [
                 new CodeSample(
                     <<<'CODE_SAMPLE'
-                    <?php
+                        <?php
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use PHPUnit\Framework\TestCase;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        public function test()
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = $this->createStub(Example::class);
+                            public function test()
+                            {
+                                $mock = $this->createStub(Example::class);
 
-                            $mock->method('method')->willReturn('value');
+                                $mock->method('method')->willReturn('value');
 
-                            self::assertSame('value', $mock->method());
+                                self::assertSame('value', $mock->method());
+                            }
                         }
-                    }
-                    CODE_SAMPLE
+                        CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-                    <?php
+                        <?php
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use PHPUnit\Framework\TestCase;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        public function test()
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            public function test()
+                            {
+                                $mock = \Mockery::mock(Example::class);
 
-                            $mock->expects('method')->andReturn('value');
+                                $mock->expects('method')->andReturn('value');
 
-                            self::assertSame('value', $mock->method());
+                                self::assertSame('value', $mock->method());
+                            }
                         }
-                    }
-                    CODE_SAMPLE
+                        CODE_SAMPLE
                 ),
             ]
         );
