@@ -24,44 +24,44 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
             [
                 new CodeSample(
                     <<<'CODE_SAMPLE'
-                    <?php
+                        <?php
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use Mockery;
-                    use PHPUnit\Framework\TestCase;
+                        use Mockery;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        public function test(): void
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = Mockery::mock(Example::class);
+                            public function test(): void
+                            {
+                                $mock = Mockery::mock(Example::class);
 
-                            self::assertInstanceOf(Example::class, $mock);
+                                self::assertInstanceOf(Example::class, $mock);
+                            }
                         }
-                    }
-                    CODE_SAMPLE
+                        CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-                    <?php
+                        <?php
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-                    use Mockery;
-                    use PHPUnit\Framework\TestCase;
+                        use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+                        use Mockery;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        use MockeryPHPUnitIntegration;
-                        public function test(): void
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = Mockery::mock(Example::class);
+                            use MockeryPHPUnitIntegration;
+                            public function test(): void
+                            {
+                                $mock = Mockery::mock(Example::class);
 
-                            self::assertInstanceOf(Example::class, $mock);
+                                self::assertInstanceOf(Example::class, $mock);
+                            }
                         }
-                    }
-                    CODE_SAMPLE
+                        CODE_SAMPLE
                 ),
 
             ]
