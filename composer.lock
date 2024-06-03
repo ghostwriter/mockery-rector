@@ -4037,16 +4037,16 @@
         },
         {
             "name": "symplify/rule-doc-generator",
-            "version": "12.1.10",
+            "version": "12.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/rule-doc-generator.git",
-                "reference": "be8c54f0ca6429add759cbd5a6c365f6caf634b6"
+                "reference": "e8ca2fada4e9a5ac0947d9d3547c4586d88192d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/rule-doc-generator/zipball/be8c54f0ca6429add759cbd5a6c365f6caf634b6",
-                "reference": "be8c54f0ca6429add759cbd5a6c365f6caf634b6",
+                "url": "https://api.github.com/repos/symplify/rule-doc-generator/zipball/e8ca2fada4e9a5ac0947d9d3547c4586d88192d7",
+                "reference": "e8ca2fada4e9a5ac0947d9d3547c4586d88192d7",
                 "shasum": ""
             },
             "require": {
@@ -4067,7 +4067,7 @@
             ],
             "description": "Documentation generator for coding standard or static analysis rules",
             "support": {
-                "source": "https://github.com/symplify/rule-doc-generator/tree/12.1.10"
+                "source": "https://github.com/symplify/rule-doc-generator/tree/12.2.1"
             },
             "funding": [
                 {
@@ -4079,7 +4079,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-18T21:45:44+00:00"
+            "time": "2024-06-02T12:49:22+00:00"
         },
         {
             "name": "theseer/tokenizer",
