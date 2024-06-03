@@ -20,12 +20,12 @@ final class HamcrestToPHPUnitRector extends AbstractMockeryRector
         return new RuleDefinition('Refactor Hamcrest matchers to PHPUnit constraints', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
-                // @todo fill code before
-                CODE_SAMPLE
+                    // @todo fill code before
+                    CODE_SAMPLE
                 ,
                 <<<'CODE_SAMPLE'
-                // @todo fill code after
-                CODE_SAMPLE
+                    // @todo fill code after
+                    CODE_SAMPLE
             ),
         ]);
     }
