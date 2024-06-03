@@ -11,6 +11,4 @@ use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(AbstractMockeryRector::class)]
 #[CoversClass(HamcrestToPHPUnitRector::class)]
-final class HamcrestToPHPUnitRectorTest extends AbstractMockeryRectorTestCase
-{
-}
+final class HamcrestToPHPUnitRectorTest extends AbstractMockeryRectorTestCase {}
