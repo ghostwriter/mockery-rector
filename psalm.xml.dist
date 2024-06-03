@@ -40,11 +40,6 @@
         <!-- <pluginClass class="Ghostwriter\PsalmPlugin\Plugin"/> -->
     </plugins>
     <issueHandlers>
-        <InvalidArgument>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </InvalidArgument>
         <MissingOverrideAttribute>
             <errorLevel type="suppress">
                 <directory name="tests"/>
