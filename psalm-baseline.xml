@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.23.1@8471a896ccea3526b26d082f4461eeea467f10a4">
+<files psalm-version="5.24.0@462c80e31c34e58cc4f750c656be3927e80e550e">
   <file src="src/AbstractMockeryRector.php">
+    <DeprecatedConstant>
+      <code><![CDATA[NodeTraverser::REMOVE_NODE]]></code>
+      <code><![CDATA[NodeTraverser::STOP_TRAVERSAL]]></code>
+    </DeprecatedConstant>
     <InvalidArgument>
       <code><![CDATA[[$this->importName($class)]]]></code>
     </InvalidArgument>
     <LessSpecificReturnType>
       <code><![CDATA[?Node]]></code>
-      <code><![CDATA[?int]]></code>
-      <code><![CDATA[?int]]></code>
     </LessSpecificReturnType>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getNodeTypes(): array]]></code>
-    </MissingOverrideAttribute>
     <MissingThrowsDocblock>
       <code><![CDATA[currentFile]]></code>
       <code><![CDATA[currentFile]]></code>
@@ -19,8 +18,15 @@
       <code><![CDATA[importName]]></code>
     </MissingThrowsDocblock>
     <MixedInferredReturnType>
+      <code><![CDATA[?int]]></code>
+      <code><![CDATA[?int]]></code>
       <code><![CDATA[?string]]></code>
     </MixedInferredReturnType>
+    <MixedReturnStatement>
+      <code><![CDATA[$node->uses === [] ? self::REMOVE_NODE : null]]></code>
+      <code><![CDATA[$node->uses === [] ? self::REMOVE_NODE : null]]></code>
+      <code><![CDATA[self::REMOVE_NODE]]></code>
+    </MixedReturnStatement>
     <PossiblyUndefinedIntArrayOffset>
       <code><![CDATA[$property->props[0]]]></code>
     </PossiblyUndefinedIntArrayOffset>
@@ -84,10 +90,6 @@
     <ArgumentTypeCoercion>
       <code><![CDATA[$node->stmts]]></code>
     </ArgumentTypeCoercion>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -101,10 +103,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/HamcrestToPHPUnitRector.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -118,10 +116,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/PHPUnitToMockeryRector.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -135,10 +129,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/ProphecyToMockeryRector.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -152,10 +142,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/ShouldReceiveToAllowsRector.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -169,10 +155,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/ShouldReceiveToExpectsRector.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -186,10 +168,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Rule/UseMockeryPHPUnitIntegrationTraitRector.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getRuleDefinition(): RuleDefinition]]></code>
-      <code><![CDATA[public function refactor(Node $node): ?Node]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$node]]></code>
     </MoreSpecificImplementedParamType>
@@ -201,14 +179,5 @@
       <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
       <code><![CDATA[UseMockeryPHPUnitIntegrationTraitRector]]></code>
     </PropertyNotSetInConstructor>
-  </file>
-  <file src="tests/Unit/AbstractMockeryRectorTestCase.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[final public function provideConfigFilePath(): string]]></code>
-    </MissingOverrideAttribute>
-    <PossiblyUnusedMethod>
-      <code><![CDATA[provideData]]></code>
-      <code><![CDATA[test]]></code>
-    </PossiblyUnusedMethod>
   </file>
 </files>
