@@ -11,6 +11,4 @@ use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(ProphecyToMockeryRector::class)]
 #[CoversClass(AbstractMockeryRector::class)]
-final class ProphecyToMockeryRectorTest extends AbstractMockeryRectorTestCase
-{
-}
+final class ProphecyToMockeryRectorTest extends AbstractMockeryRectorTestCase {}
