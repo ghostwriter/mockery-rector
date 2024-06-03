@@ -38,7 +38,7 @@
     },
     "require-dev": {
         "ghostwriter/coding-standard": "dev-main",
-        "symplify/rule-doc-generator": "^12.1.10"
+        "symplify/rule-doc-generator": "^12.2.1"
     },
     "conflict": {
         "rector/rector": "<1.1"
