@@ -19,11 +19,12 @@
     ],
     "homepage": "https://github.com/ghostwriter/mockery-rector",
     "support": {
-        "issues": "https://github.com/ghostwriter/mockery-rector/issues",
-        "forum": "https://github.com/ghostwriter/mockery-rector/discussions",
-        "source": "https://github.com/ghostwriter/mockery-rector",
         "docs": "https://github.com/ghostwriter/mockery-rector",
-        "rss": "https://github.com/ghostwriter/mockery-rector/releases.atom"
+        "forum": "https://github.com/ghostwriter/mockery-rector/discussions",
+        "issues": "https://github.com/ghostwriter/mockery-rector/issues",
+        "rss": "https://github.com/ghostwriter/mockery-rector/releases.atom",
+        "security": "https://github.com/ghostwriter/mockery-rector/security/advisories/new",
+        "source": "https://github.com/ghostwriter/mockery-rector"
     },
     "funding": [
         {
@@ -33,12 +34,12 @@
     ],
     "require": {
         "php": ">=8.2",
-        "mockery/mockery": "^1.6.12 || ^2.0",
-        "rector/rector": "^1.1.0"
+        "mockery/mockery": "^1.6.12",
+        "rector/rector": "^1.2.0"
     },
     "require-dev": {
         "ghostwriter/coding-standard": "dev-main",
-        "symplify/rule-doc-generator": "^12.2.1"
+        "symplify/rule-doc-generator": "^12.2.2"
     },
     "conflict": {
         "rector/rector": "<1.1"
@@ -73,11 +74,11 @@
     },
     "scripts": {
         "bin_ecs": "ecs check --clear-cache --no-interaction",
-        "bin_infection": "infection --ansi --verbose --threads=max --min-msi=0 --min-covered-msi=0",
+        "bin_infection": "infection --ansi --show-mutations --threads=max --min-msi=0 --min-covered-msi=0",
         "bin_phive": "phive",
         "bin_phpunit": "phpunit --do-not-cache-result --colors=always",
         "bin_psalm": "psalm --no-cache",
-        "bin_rector": "rector process --no-ansi --no-interaction --clear-cache",
+        "bin_rector": "rector process --no-ansi --clear-cache",
         "cache:clear": "rm -rf ./.cache/*",
         "check": [
             "@composer validate",
@@ -113,5 +114,6 @@
             "@psalm:shepherd",
             "@infection"
         ]
-    }
+    },
+    "_comment": "#BlackLivesMatter"
 }
