@@ -24,7 +24,10 @@ final readonly class MockerySetList implements SetProviderInterface
     #[Override]
     public function provide(): array
     {
-        return [
+        /** @var list<Set>|null $sets */
+        static $sets = null;
+
+        return $sets ??= [
             new Set('Mockery', 'Mockery 1.6', self::MOCKERY_1_6),
             new Set('Mockery', 'Mockery 2.0', self::MOCKERY_2_0),
             new Set('Mockery', 'PHPUnit to Mockery', self::PHPUNIT_TO_MOCKERY),
