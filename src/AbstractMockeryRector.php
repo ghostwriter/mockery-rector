@@ -18,8 +18,8 @@ use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\TraitUse;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\NodeTraverser;
+use PHPStan\BetterReflection\Reflection\Adapter\ReflectionEnum;
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\ReflectionEnum;
 use PHPUnit\Framework\TestCase;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\CodingStyle\Application\UseImportsAdder;
@@ -29,7 +29,6 @@ use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Exception\ShouldNotHappenException;
 use Rector\Naming\Naming\AliasNameResolver;
 use Rector\Naming\Naming\UseImportsResolver;
-use Rector\NodeNameResolver\NodeNameResolver;
 use Rector\NodeTypeResolver\PhpDoc\NodeAnalyzer\DocBlockNameImporter;
 use Rector\PhpDocParser\NodeTraverser\SimpleCallableNodeTraverser;
 use Rector\PhpParser\Node\BetterNodeFinder;
@@ -142,6 +141,7 @@ abstract class AbstractMockeryRector extends AbstractRector
         if (! $class->extends instanceof Name) {
             return false;
         }
+
         return $this->isSubclassOf($class, $parentClassName);
         // return $this->nodeNameResolver->isName($class->extends, $parentClassName);
     }
@@ -161,9 +161,11 @@ abstract class AbstractMockeryRector extends AbstractRector
                 if (! $this->nodeNameResolver->isName($attr->name, $attributeName)) {
                     continue;
                 }
+
                 return true;
             }
         }
+
         return false;
     }
 
@@ -173,22 +175,26 @@ abstract class AbstractMockeryRector extends AbstractRector
         if (! $classReflection instanceof ClassReflection) {
             return false;
         }
+
         foreach ($classReflection->getParents() as $parentClassReflection) {
             if ($parentClassReflection->hasMethod($methodName)) {
                 return true;
             }
         }
+
         return false;
     }
 
     final public function hasConstant(Class_ $class, string $constantName): bool
     {
-        foreach ($class->getConstants() as $constant) {
-            if (! $this->nodeNameResolver->isName($constant, $constantName)) {
+        foreach ($class->getConstants() as $classConst) {
+            if (! $this->nodeNameResolver->isName($classConst, $constantName)) {
                 continue;
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -198,19 +204,23 @@ abstract class AbstractMockeryRector extends AbstractRector
             if (! $this->nodeNameResolver->isName($interface, $interfaceName)) {
                 continue;
             }
+
             return true;
         }
+
         return false;
     }
 
     final public function hasMethod(Class_ $class, string $methodName): bool
     {
-        foreach ($class->getMethods() as $method) {
-            if (! $this->nodeNameResolver->isName($method->name, $methodName)) {
+        foreach ($class->getMethods() as $classMethod) {
+            if (! $this->nodeNameResolver->isName($classMethod->name, $methodName)) {
                 continue;
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -221,17 +231,18 @@ abstract class AbstractMockeryRector extends AbstractRector
                 return true;
             }
         }
+
         return false;
     }
 
-    final public function hasMockeryCloseAndParentTearDown(ClassMethod $node): bool
+    final public function hasMockeryCloseAndParentTearDown(ClassMethod $classMethod): bool
     {
-        return $this->hasMockeryCloseStaticCall($node) && $this->hasParentTearDownStaticCall($node);
+        return $this->hasMockeryCloseStaticCall($classMethod) && $this->hasParentTearDownStaticCall($classMethod);
     }
 
-    final public function hasMockeryCloseStaticCall(ClassMethod $node): bool
+    final public function hasMockeryCloseStaticCall(ClassMethod $classMethod): bool
     {
-        return $this->betterNodeFinder->findFirst($node, function (Node $node): bool {
+        return $this->betterNodeFinder->findFirst($classMethod, function (Node $node): bool {
             if (! $node instanceof StaticCall) {
                 return false;
             }
@@ -244,9 +255,9 @@ abstract class AbstractMockeryRector extends AbstractRector
         }) instanceof Node;
     }
 
-    final public function hasMockeryGlobalMockFunctionCall(Class_ $node): bool
+    final public function hasMockeryGlobalMockFunctionCall(Class_ $class): bool
     {
-        return $this->betterNodeFinder->findFirst($node, function (Node $node): bool {
+        return $this->betterNodeFinder->findFirst($class, function (Node $node): bool {
             if (! $node instanceof FuncCall) {
                 return false;
             }
@@ -255,9 +266,9 @@ abstract class AbstractMockeryRector extends AbstractRector
         }) instanceof Node;
     }
 
-    final public function hasMockeryMockStaticCall(Class_ $node): bool
+    final public function hasMockeryMockStaticCall(Class_ $class): bool
     {
-        return $this->betterNodeFinder->findFirst($node, function (Node $node): bool {
+        return $this->betterNodeFinder->findFirst($class, function (Node $node): bool {
             if (! $node instanceof StaticCall) {
                 return false;
             }
@@ -270,7 +281,7 @@ abstract class AbstractMockeryRector extends AbstractRector
         }) instanceof Node;
     }
 
-    final public function hasMockeryPHPUnitIntegrationTrait(Class_ $node): bool
+    final public function hasMockeryPHPUnitIntegrationTrait(Class_ $class): bool
     {
         //        $classReflection = $this->reflectionResolver->resolveClassReflection($node);
         //
@@ -279,12 +290,12 @@ abstract class AbstractMockeryRector extends AbstractRector
         //        }
         //
         //        return $classReflection->hasTraitUse(MockeryPHPUnitIntegration::class);
-        return $this->hasTrait($node, MockeryPHPUnitIntegration::class);
+        return $this->hasTrait($class, MockeryPHPUnitIntegration::class);
     }
 
-    final public function hasParentTearDownStaticCall(ClassMethod $node): bool
+    final public function hasParentTearDownStaticCall(ClassMethod $classMethod): bool
     {
-        return $this->betterNodeFinder->findFirst($node, function (Node $node): bool {
+        return $this->betterNodeFinder->findFirst($classMethod, function (Node $node): bool {
             if (! $node instanceof StaticCall) {
                 return false;
             }
@@ -303,14 +314,16 @@ abstract class AbstractMockeryRector extends AbstractRector
             if (! $this->nodeNameResolver->isName($property->props[0]->name, $propertyName)) {
                 continue;
             }
+
             return true;
         }
+
         return false;
     }
 
-    final public function hasTestCaseTearDownMockeryCloseWithOptionalParentTearDown(Class_ $node): bool
+    final public function hasTestCaseTearDownMockeryCloseWithOptionalParentTearDown(Class_ $class): bool
     {
-        return $this->betterNodeFinder->findFirst($node, function (Node $node): bool {
+        return $this->betterNodeFinder->findFirst($class, function (Node $node): bool {
             if (! $node instanceof ClassMethod) {
                 return false;
             }
@@ -336,9 +349,11 @@ abstract class AbstractMockeryRector extends AbstractRector
                 if (! $this->nodeNameResolver->isName($traitName, $desiredTrait)) {
                     continue;
                 }
+
                 return true;
             }
         }
+
         return false;
     }
 
@@ -368,21 +383,23 @@ abstract class AbstractMockeryRector extends AbstractRector
         return $this->nameImporter->importName($fullyQualified, $file);
     }
 
-    final public function isAbstract(Class_ $node): bool
+    final public function isAbstract(Class_ $class): bool
     {
-        $classReflection = $this->reflectionResolver->resolveClassReflection($node);
+        $classReflection = $this->reflectionResolver->resolveClassReflection($class);
         if (! $classReflection instanceof ClassReflection) {
             return false;
         }
+
         return $classReflection->isAbstract();
     }
 
-    final public function isFinalByKeyword(Class_ $node): bool
+    final public function isFinalByKeyword(Class_ $class): bool
     {
-        $classReflection = $this->reflectionResolver->resolveClassReflection($node);
+        $classReflection = $this->reflectionResolver->resolveClassReflection($class);
         if (! $classReflection instanceof ClassReflection) {
             return false;
         }
+
         return $classReflection->isFinalByKeyword();
     }
 
@@ -397,14 +414,14 @@ abstract class AbstractMockeryRector extends AbstractRector
         return $classReflection->isSubclassOf($class);
     }
 
-    final public function isSubclassOfMockeryPHPUnitTestCase(Class_ $node): bool
+    final public function isSubclassOfMockeryPHPUnitTestCase(Class_ $class): bool
     {
-        return $this->isSubclassOf($node, MockeryTestCase::class);
+        return $this->isSubclassOf($class, MockeryTestCase::class);
     }
 
-    final public function isSubclassOfPHPUnitTestCase(Class_ $node): bool
+    final public function isSubclassOfPHPUnitTestCase(Class_ $class): bool
     {
-        return $this->isSubclassOf($node, TestCase::class);
+        return $this->isSubclassOf($class, TestCase::class);
     }
 
     final public function needsMockeryPHPUnitIntegrationTrait(FileWithoutNamespace|Namespace_ $node): bool
@@ -436,10 +453,10 @@ abstract class AbstractMockeryRector extends AbstractRector
         return $result;
     }
 
-    final public function removeClassMethod(Class_ $node, string $methodName): Class_
+    final public function removeClassMethod(Class_ $class, string $methodName): Class_
     {
         $this->traverseNodes(
-            $node->stmts,
+            $class->stmts,
             function (Node $node) use ($methodName): ?int {
                 if (! $node instanceof ClassMethod) {
                     return null;
@@ -452,12 +469,12 @@ abstract class AbstractMockeryRector extends AbstractRector
                 return self::REMOVE_NODE;
             }
         );
-        return $node;
+        return $class;
     }
 
-    final public function removeClassMethodTeardown(Class_ $node): void
+    final public function removeClassMethodTeardown(Class_ $class): void
     {
-        $this->removeClassMethod($node, 'tearDown');
+        $this->removeClassMethod($class, 'tearDown');
     }
 
     /**
@@ -474,8 +491,10 @@ abstract class AbstractMockeryRector extends AbstractRector
             if (! $this->nodeComparator->areNodesEqual($classMethod, $assign)) {
                 continue;
             }
+
             unset($stmts[$key]);
         }
+
         return $stmts;
     }
 
@@ -507,9 +526,9 @@ abstract class AbstractMockeryRector extends AbstractRector
         );
     }
 
-    final public function resolveParentClassName(Class_ $node): ?string
+    final public function resolveParentClassName(Class_ $class): ?string
     {
-        $classReflection = $this->reflectionResolver->resolveClassReflection($node);
+        $classReflection = $this->reflectionResolver->resolveClassReflection($class);
         if (! $classReflection instanceof ClassReflection) {
             return null;
         }
@@ -518,6 +537,7 @@ abstract class AbstractMockeryRector extends AbstractRector
         if ($nativeReflection instanceof ReflectionEnum) {
             return null;
         }
+
         return $nativeReflection->getParentClassName();
     }
 
