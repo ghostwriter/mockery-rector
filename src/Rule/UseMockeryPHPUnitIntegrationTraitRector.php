@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Ghostwriter\MockeryRector\Rule;
 
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
+use Override;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Namespace_;
 use Rector\Exception\ShouldNotHappenException;
 use Rector\PhpParser\Node\CustomNode\FileWithoutNamespace;
+use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -17,13 +19,17 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRector
 {
+    /**
+     * @throws PoorDocumentationException
+     */
+    #[Override]
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Refactor to use `\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration` trait when using Mockery',
-            [
+            description: 'Refactor to use `\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration` trait when using Mockery',
+            codeSamples: [
                 new CodeSample(
-                    <<<'CODE_SAMPLE'
+                    badCode: <<<'CODE_SAMPLE'
                         <?php
 
                         namespace Vendor\Package\Tests;
@@ -42,7 +48,7 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
                         }
                         CODE_SAMPLE
                     ,
-                    <<<'CODE_SAMPLE'
+                    goodCode: <<<'CODE_SAMPLE'
                         <?php
 
                         namespace Vendor\Package\Tests;
@@ -73,6 +79,7 @@ final class UseMockeryPHPUnitIntegrationTraitRector extends AbstractMockeryRecto
      *
      * @throws ShouldNotHappenException
      */
+    #[Override]
     public function refactor(Node $node): ?Node
     {
         if (! $this->needsMockeryPHPUnitIntegrationTrait($node)) {
