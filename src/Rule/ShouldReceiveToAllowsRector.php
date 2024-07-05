@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ghostwriter\MockeryRector\Rule;
 
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
+use Override;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -15,60 +16,66 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class ShouldReceiveToAllowsRector extends AbstractMockeryRector
 {
+    #[Override]
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Refactor `shouldReceive()` to `allows()` static method call', [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-                    <?php
+        return new RuleDefinition(
+            description: 'Refactor `shouldReceive()` to `allows()` static method call',
+            codeSamples: [
+                new CodeSample(
+                    badCode: <<<'CODE_SAMPLE'
+                        <?php
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use PHPUnit\Framework\TestCase;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-
-                        public function test(): void
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-                            $mock->shouldReceive('method')->with('arg')->andReturn('value');
+                            public function test(): void
+                            {
+                                $mock = \Mockery::mock(Example::class);
 
-                            self::assertSame('value', $mock->method('arg'));
+                                $mock->shouldReceive('method')->with('arg')->andReturn('value');
+
+                                self::assertSame('value', $mock->method('arg'));
+                            }
                         }
-                    }
-                    CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-                    <?php
+                        CODE_SAMPLE
+                    ,
+                    goodCode: <<<'CODE_SAMPLE'
+                        <?php
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use PHPUnit\Framework\TestCase;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-
-                        public function test(): void
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-                            $mock->allows('method')->with('arg')->andReturn('value');
+                            public function test(): void
+                            {
+                                $mock = \Mockery::mock(Example::class);
 
-                            self::assertSame('value', $mock->method('arg'));
+                                $mock->allows('method')->with('arg')->andReturn('value');
+
+                                self::assertSame('value', $mock->method('arg'));
+                            }
                         }
-                    }
-                    CODE_SAMPLE
-            ),
-        ]);
+                        CODE_SAMPLE
+                ),
+
+            ]
+        );
     }
 
     /**
      * @param Class_ $node
      */
+    #[Override]
     public function refactor(Node $node): ?Node
     {
         return $node;
