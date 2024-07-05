@@ -34,7 +34,7 @@
     ],
     "_comment": "#BlackLivesMatter",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "mockery/mockery": "^1.6.12",
         "rector/rector": "^1.2.0"
     },
@@ -43,7 +43,7 @@
         "symplify/rule-doc-generator": "^12.2.2"
     },
     "conflict": {
-        "rector/rector": "<1.1"
+        "rector/rector": "<1.2"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
