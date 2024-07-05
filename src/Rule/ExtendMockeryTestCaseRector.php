@@ -6,6 +6,7 @@ namespace Ghostwriter\MockeryRector\Rule;
 
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Override;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Namespace_;
@@ -20,13 +21,14 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
 {
+    #[Override]
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Refactor to extend `Mockery\Adapter\Phpunit\MockeryTestCase` class when using Mockery',
-            [
+            description: 'Refactor to extend `Mockery\Adapter\Phpunit\MockeryTestCase` class when using Mockery',
+            codeSamples: [
                 new CodeSample(
-                    <<<'CODE_SAMPLE'
+                    badCode: <<<'CODE_SAMPLE'
                         <?php
 
                         declare(strict_types=1);
@@ -47,7 +49,7 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
                         }
                         CODE_SAMPLE
                     ,
-                    <<<'CODE_SAMPLE'
+                    goodCode: <<<'CODE_SAMPLE'
                         <?php
 
                         declare(strict_types=1);
@@ -77,13 +79,14 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
      *
      * @throws ShouldNotHappenException
      */
+    #[Override]
     public function refactor(Node $node): ?Node
     {
         $refactored = false;
 
         $this->traverseNodes(
-            $node->stmts,
-            function (Node $node) use (&$refactored): ?Class_ {
+            nodes: $node->stmts,
+            callback: function (Node $node) use (&$refactored): ?Class_ {
                 if (! $node instanceof Class_) {
                     return null;
                 }
@@ -94,7 +97,7 @@ final class ExtendMockeryTestCaseRector extends AbstractMockeryRector
 
                 $refactored = true;
 
-                $this->extend($node, MockeryTestCase::class);
+                $this->extend(node: $node, class: MockeryTestCase::class);
 
                 return $node;
             }
