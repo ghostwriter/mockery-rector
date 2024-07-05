@@ -10,13 +10,13 @@ use Rector\Set\ValueObject\Set;
 
 final readonly class MockerySetList implements SetProviderInterface
 {
-    public const MOCKERY_1_6 = __DIR__ . '/../config/mockery-1.6.php';
+    public const string MOCKERY_1_6 = __DIR__ . '/../config/mockery-1.6.php';
 
-    public const MOCKERY_2_0 = __DIR__ . '/../config/mockery-2.0.php';
+    public const string MOCKERY_2_0 = __DIR__ . '/../config/mockery-2.0.php';
 
-    public const PHPUNIT_TO_MOCKERY = __DIR__ . '/../config/phpunit-to-mockery.php';
+    public const string PHPUNIT_TO_MOCKERY = __DIR__ . '/../config/phpunit-to-mockery.php';
 
-    public const PROPHECY_TO_MOCKERY = __DIR__ . '/../config/prophecy-to-mockery.php';
+    public const string PROPHECY_TO_MOCKERY = __DIR__ . '/../config/prophecy-to-mockery.php';
 
     /**
      * @return list<Set>
@@ -24,7 +24,7 @@ final readonly class MockerySetList implements SetProviderInterface
     #[Override]
     public function provide(): array
     {
-        /** @var list<Set>|null $sets */
+        /** @var null|list<Set> $sets */
         static $sets = null;
 
         return $sets ??= [
