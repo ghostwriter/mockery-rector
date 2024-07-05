@@ -7,6 +7,7 @@ namespace Tests\Unit;
 use Generator;
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
 use InvalidArgumentException;
+use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
@@ -28,6 +29,7 @@ abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
      */
     protected static array $filePaths = [];
 
+    #[Override]
     final public function provideConfigFilePath(): string
     {
         return self::fixtureDirectory('/config.php');
