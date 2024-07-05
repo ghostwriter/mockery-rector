@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ghostwriter\MockeryRector\Rule;
 
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
+use Override;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -15,13 +16,14 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class PHPUnitToMockeryRector extends AbstractMockeryRector
 {
+    #[Override]
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Refactor PHPUnit to Mockery',
-            [
+            description: 'Refactor PHPUnit to Mockery',
+            codeSamples: [
                 new CodeSample(
-                    <<<'CODE_SAMPLE'
+                    badCode: <<<'CODE_SAMPLE'
                         <?php
 
                         namespace Vendor\Package\Tests;
@@ -41,7 +43,7 @@ final class PHPUnitToMockeryRector extends AbstractMockeryRector
                         }
                         CODE_SAMPLE
                     ,
-                    <<<'CODE_SAMPLE'
+                    goodCode: <<<'CODE_SAMPLE'
                         <?php
 
                         namespace Vendor\Package\Tests;
@@ -68,6 +70,7 @@ final class PHPUnitToMockeryRector extends AbstractMockeryRector
     /**
      * @param Class_ $node
      */
+    #[Override]
     public function refactor(Node $node): ?Node
     {
         return $node;
