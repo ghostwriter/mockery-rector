@@ -10,9 +10,9 @@ use Rector\Set\ValueObject\Set;
 
 final readonly class MockeryLevelSetList implements SetProviderInterface
 {
-    public const UPGRADE_TO_MOCKERY_1_6 = __DIR__ . '/../config/up-to-mockery-1.6.php';
+    public const string UPGRADE_TO_MOCKERY_1_6 = __DIR__ . '/../config/up-to-mockery-1.6.php';
 
-    public const UPGRADE_TO_MOCKERY_2_0 = __DIR__ . '/../config/up-to-mockery-2.0.php';
+    public const string UPGRADE_TO_MOCKERY_2_0 = __DIR__ . '/../config/up-to-mockery-2.0.php';
 
     /**
      * @return list<Set>
@@ -20,7 +20,7 @@ final readonly class MockeryLevelSetList implements SetProviderInterface
     #[Override]
     public function provide(): array
     {
-        /** @var list<Set>|null $sets */
+        /** @var null|list<Set> $sets */
         static $sets = null;
 
         return $sets ??= [
