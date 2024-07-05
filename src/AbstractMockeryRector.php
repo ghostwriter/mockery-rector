@@ -6,6 +6,7 @@ namespace Ghostwriter\MockeryRector;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Override;
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\StaticCall;
@@ -149,6 +150,7 @@ abstract class AbstractMockeryRector extends AbstractRector
     /**
      * @return array<class-string<Node>>
      */
+    #[Override]
     public function getNodeTypes(): array
     {
         return [FileWithoutNamespace::class, Namespace_::class];
