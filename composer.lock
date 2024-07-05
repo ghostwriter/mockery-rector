@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f22224a426785de2ac7ca59046155bd4",
+    "content-hash": "6343fc498bc7ad2b6ccf7136ffdc43eb",
     "packages": [
         {
             "name": "hamcrest/hamcrest-php",
@@ -895,12 +895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ghostwriter/coding-standard.git",
-                "reference": "26a6bae74414f0bcfb0ec54a9deaa2301b2394a8"
+                "reference": "35ef58eb02b395e4e79a1cb2493c738ad24870a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ghostwriter/coding-standard/zipball/26a6bae74414f0bcfb0ec54a9deaa2301b2394a8",
-                "reference": "26a6bae74414f0bcfb0ec54a9deaa2301b2394a8",
+                "url": "https://api.github.com/repos/ghostwriter/coding-standard/zipball/35ef58eb02b395e4e79a1cb2493c738ad24870a9",
+                "reference": "35ef58eb02b395e4e79a1cb2493c738ad24870a9",
                 "shasum": ""
             },
             "require": {
@@ -966,7 +966,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-03T12:33:10+00:00"
+            "time": "2024-07-05T14:33:25+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4146,7 +4146,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2"
+        "php": ">=8.3"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
