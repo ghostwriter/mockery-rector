@@ -35,7 +35,6 @@ use Rector\PhpDocParser\NodeTraverser\SimpleCallableNodeTraverser;
 use Rector\PhpParser\Node\BetterNodeFinder;
 use Rector\PhpParser\Node\CustomNode\FileWithoutNamespace;
 use Rector\PostRector\Collector\UseNodesToAddCollector;
-use Rector\Provider\CurrentFileProvider;
 use Rector\Rector\AbstractRector;
 use Rector\Reflection\ReflectionResolver;
 use Rector\ValueObject\Application\File;
@@ -59,7 +58,6 @@ abstract class AbstractMockeryRector extends AbstractRector
         public readonly AliasNameResolver $aliasNameResolver,
         public readonly BetterNodeFinder $betterNodeFinder,
         public readonly ClassNameImportSkipper $classNameImportSkipper,
-        public readonly CurrentFileProvider $currentFileProvider,
         public readonly DocBlockNameImporter $docBlockNameImporter,
         public readonly DocBlockUpdater $docBlockUpdater,
         public readonly NameImporter $nameImporter,
@@ -131,13 +129,7 @@ abstract class AbstractMockeryRector extends AbstractRector
      */
     final public function currentFile(): File
     {
-        $file = $this->currentFileProvider->getFile();
-
-        if (! $file instanceof File) {
-            throw new ShouldNotHappenException();
-        }
-
-        return $file;
+        return $this->file;
     }
 
     final public function extend(Class_ $node, string $class): void
