@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ghostwriter\MockeryRector\Rule;
 
 use Ghostwriter\MockeryRector\AbstractMockeryRector;
+use Override;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -15,56 +16,61 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class ProphecyToMockeryRector extends AbstractMockeryRector
 {
+    #[Override]
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Refactor Prophecy to Mockery', [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-                    <?php
+        return new RuleDefinition(
+            description: 'Refactor Prophecy to Mockery',
+            codeSamples: [
+                new CodeSample(
+                    badCode: <<<'CODE_SAMPLE'
+                        <?php
 
-                    declare(strict_types=1);
+                        declare(strict_types=1);
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use PHPUnit\Framework\TestCase;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        public function test()
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = $this->prophesize(Example::class);
+                            public function test()
+                            {
+                                $mock = $this->prophesize(Example::class);
 
-                            self::assertInstanceOf(Example::class, $mock->reveal());
+                                self::assertInstanceOf(Example::class, $mock->reveal());
+                            }
                         }
-                    }
-                    CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-                    <?php
+                        CODE_SAMPLE
+                    ,
+                    goodCode: <<<'CODE_SAMPLE'
+                        <?php
 
-                    declare(strict_types=1);
+                        declare(strict_types=1);
 
-                    namespace Vendor\Package\Tests;
+                        namespace Vendor\Package\Tests;
 
-                    use PHPUnit\Framework\TestCase;
+                        use PHPUnit\Framework\TestCase;
 
-                    final class ExampleTest extends TestCase
-                    {
-                        public function test()
+                        final class ExampleTest extends TestCase
                         {
-                            $mock = \Mockery::mock(Example::class);
+                            public function test()
+                            {
+                                $mock = \Mockery::mock(Example::class);
 
-                            self::assertInstanceOf(Example::class, $mock);
+                                self::assertInstanceOf(Example::class, $mock);
+                            }
                         }
-                    }
-                    CODE_SAMPLE
-            ),
-        ]);
+                        CODE_SAMPLE
+                ),
+            ]
+        );
     }
 
     /**
      * @param Class_ $node
      */
+    #[Override]
     public function refactor(Node $node): ?Node
     {
         return $node;
