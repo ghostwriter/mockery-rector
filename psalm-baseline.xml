@@ -82,6 +82,11 @@
       <code><![CDATA[MockerySetList]]></code>
     </UnusedClass>
   </file>
+  <file src="src/MockerySetProvider.php">
+    <UnusedClass>
+      <code><![CDATA[MockerySetProvider]]></code>
+    </UnusedClass>
+  </file>
   <file src="src/Rule/ExtendMockeryTestCaseRector.php">
     <ArgumentTypeCoercion>
       <code><![CDATA[$node->stmts]]></code>
