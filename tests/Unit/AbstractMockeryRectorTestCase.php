@@ -11,6 +11,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 use ReflectionClass;
+use Throwable;
 
 use function array_key_exists;
 use function dirname;
@@ -25,13 +26,16 @@ abstract class AbstractMockeryRectorTestCase extends AbstractRectorTestCase
     /**
      * @var array<class-string<static>,string>
      */
-    protected static $filePaths = [];
+    protected static array $filePaths = [];
 
     final public function provideConfigFilePath(): string
     {
         return self::fixtureDirectory('/config.php');
     }
 
+    /**
+     * @throws Throwable
+     */
     #[DataProvider('provideData')]
     final public function test(string $filePath): void
     {
