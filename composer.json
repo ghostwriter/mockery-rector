@@ -19,12 +19,12 @@
     ],
     "homepage": "https://github.com/ghostwriter/mockery-rector",
     "support": {
-        "docs": "https://github.com/ghostwriter/mockery-rector",
-        "forum": "https://github.com/ghostwriter/mockery-rector/discussions",
         "issues": "https://github.com/ghostwriter/mockery-rector/issues",
+        "forum": "https://github.com/ghostwriter/mockery-rector/discussions",
+        "source": "https://github.com/ghostwriter/mockery-rector",
+        "docs": "https://github.com/ghostwriter/mockery-rector",
         "rss": "https://github.com/ghostwriter/mockery-rector/releases.atom",
-        "security": "https://github.com/ghostwriter/mockery-rector/security/advisories/new",
-        "source": "https://github.com/ghostwriter/mockery-rector"
+        "security": "https://github.com/ghostwriter/mockery-rector/security/advisories/new"
     },
     "funding": [
         {
@@ -32,6 +32,7 @@
             "url": "https://github.com/sponsors/ghostwriter"
         }
     ],
+    "_comment": "#BlackLivesMatter",
     "require": {
         "php": ">=8.2",
         "mockery/mockery": "^1.6.12",
@@ -114,6 +115,5 @@
             "@psalm:shepherd",
             "@infection"
         ]
-    },
-    "_comment": "#BlackLivesMatter"
+    }
 }
