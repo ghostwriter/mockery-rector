@@ -11,6 +11,10 @@
     <LessSpecificReturnType>
       <code><![CDATA[?Node]]></code>
     </LessSpecificReturnType>
+    <MissingClassConstType>
+      <code><![CDATA[REMOVE_NODE = NodeTraverser::REMOVE_NODE]]></code>
+      <code><![CDATA[STOP_TRAVERSAL = NodeTraverser::STOP_TRAVERSAL]]></code>
+    </MissingClassConstType>
     <MissingThrowsDocblock>
       <code><![CDATA[currentFile]]></code>
       <code><![CDATA[currentFile]]></code>
