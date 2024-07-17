@@ -8,6 +8,7 @@ use Ghostwriter\MockeryRector\AbstractMockeryRector;
 use Override;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -16,6 +17,9 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  */
 final class PHPUnitToMockeryRector extends AbstractMockeryRector
 {
+    /**
+     * @throws PoorDocumentationException
+     */
     #[Override]
     public function getRuleDefinition(): RuleDefinition
     {
