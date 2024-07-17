@@ -36,11 +36,10 @@
     "require": {
         "php": ">=8.3",
         "mockery/mockery": "^1.6.12",
-        "rector/rector": "^1.2.0"
+        "rector/rector": "^1.2.1"
     },
     "require-dev": {
-        "ghostwriter/coding-standard": "dev-main",
-        "symplify/rule-doc-generator": "^12.2.2"
+        "ghostwriter/coding-standard": "dev-main"
     },
     "conflict": {
         "rector/rector": "<1.2"
@@ -67,6 +66,9 @@
         "classmap-authoritative": false,
         "discard-changes": true,
         "optimize-autoloader": true,
+        "platform": {
+            "php": "8.3.999"
+        },
         "preferred-install": "dist",
         "prepend-autoloader": true,
         "process-timeout": 5000,
