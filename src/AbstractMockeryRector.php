@@ -371,8 +371,6 @@ abstract class AbstractMockeryRector extends AbstractRector
      */
     final public function importName(array|Name|string $fullyQualifiedClassName): ?Name
     {
-        $file = $this->currentFile();
-
         $fullyQualified = new FullyQualified($fullyQualifiedClassName);
 
         if (
@@ -382,7 +380,7 @@ abstract class AbstractMockeryRector extends AbstractRector
             return null;
         }
 
-        return $this->nameImporter->importName($fullyQualified, $file);
+        return $this->nameImporter->importName($fullyQualified, $this->file);
     }
 
     final public function isAbstract(Class_ $class): bool
@@ -504,8 +502,6 @@ abstract class AbstractMockeryRector extends AbstractRector
      * @template T of object
      *
      * @param list<class-string<T>> $removedUseStatements
-     *
-     * @throws ShouldNotHappenException
      */
     final public function removeUseStatements(string ...$removedUseStatements): void
     {
@@ -545,13 +541,11 @@ abstract class AbstractMockeryRector extends AbstractRector
 
     /**
      * @param callable(Node):(null|int|list<Node>|Node) $callback
-     *
-     * @throws ShouldNotHappenException
      */
     final public function traverseFile(callable $callback): void
     {
         $this->simpleCallableNodeTraverser
-            ->traverseNodesWithCallable($this->currentFile()->getNewStmts(), $callback);
+            ->traverseNodesWithCallable($this->file->getNewStmts(), $callback);
     }
 
     /**
@@ -570,16 +564,16 @@ abstract class AbstractMockeryRector extends AbstractRector
 
     final public function usesClass(): array
     {
-        return $this->useNodesToAddCollector->getObjectImportsByFilePath($this->currentFile()->getFilePath());
+        return $this->useNodesToAddCollector->getObjectImportsByFilePath($this->file->getFilePath());
     }
 
     final public function usesConstant(): array
     {
-        return $this->useNodesToAddCollector->getConstantImportsByFilePath($this->currentFile()->getFilePath());
+        return $this->useNodesToAddCollector->getConstantImportsByFilePath($this->file->getFilePath());
     }
 
     final public function usesFunction(): array
     {
-        return $this->useNodesToAddCollector->getFunctionImportsByFilePath($this->currentFile()->getFilePath());
+        return $this->useNodesToAddCollector->getFunctionImportsByFilePath($this->file->getFilePath());
     }
 }
