@@ -16,9 +16,6 @@
       <code><![CDATA[STOP_TRAVERSAL = NodeTraverser::STOP_TRAVERSAL]]></code>
     </MissingClassConstType>
     <MissingThrowsDocblock>
-      <code><![CDATA[currentFile]]></code>
-      <code><![CDATA[currentFile]]></code>
-      <code><![CDATA[currentFile]]></code>
       <code><![CDATA[importName]]></code>
     </MissingThrowsDocblock>
     <MixedInferredReturnType>
@@ -35,6 +32,7 @@
     </PossiblyUndefinedIntArrayOffset>
     <PossiblyUnusedMethod>
       <code><![CDATA[addTraitUse]]></code>
+      <code><![CDATA[currentFile]]></code>
       <code><![CDATA[extendsClass]]></code>
       <code><![CDATA[hasAttribute]]></code>
       <code><![CDATA[hasClassParentClassMethod]]></code>
